@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colors Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="#home">Home</a> |
+        <a href="#about">About</a> |
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class = "game">
+       <div class = "game_header">
+            <h1>Colors Game</h1>
+                <h2>Balance: 1000</h2>
+       </div>
+       <div class= "game_display">
+        <div class= "dice" id="display1"></div>
+        <div class= "dice" id="display2"></div>
+        <div class= "dice" id="display3"></div>
+    </div>  
+       <div class= "game_body">
+            <div class = "color-box">
+                <button id="yellow">Yellow</button>
+                <button id="orange">Orange</button>
+                <button id="pink">Pink</button>
+                <button id="blue">Blue</button>
+                <button id="green">Green</button>
+                <button id="red">Red</button>
+            </div>
+            <div class="input-section">
+                <label for="bet">Bet amount: </label>
+                <input type="number">
+            </div>
+       </div>
+       <div class="game_footer">
+        <button id="reset">Reset Game</button>
+        <button id="roll" onclick="rollDice()">Roll Dice</button>
+       </div>
+    </div>
+    <script src="colors.js"></script>
+</body>
+</html>
