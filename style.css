@@ -28,14 +28,13 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: green;
     flex-grow: 1;
+    background-color: gray;
   }
 
   .game_display {
     display: flex;
     justify-content: center;
-    background-color: yellow;
   }
 
   .dice {

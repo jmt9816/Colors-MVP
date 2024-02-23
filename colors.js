@@ -15,12 +15,30 @@
 function rollDice(){
 
 const roll = () => {
+  const results = [];
     for (let i = 0; i < 3; i++) {
       const colors = ['yellow', 'orange', 'pink', 'blue', 'green', 'red'];
       const result = (colors[Math.floor(Math.random() * colors.length)]);
-      console.log(result);
+      results.push(result);
   }
+  return results;
 }
 
-roll ();
+const diceResults = roll();
+console.log(diceResults);
+
+  // Set the background colors of the elements
+document.getElementById('display1').style.backgroundColor = diceResults[0];
+document.getElementById('display2').style.backgroundColor = diceResults[1];
+document.getElementById('display3').style.backgroundColor = diceResults[2];
+
+return diceResults;
+}
+
+function resetDice() {
+  const diceElements = document.getElementsByClassName('dice');
+
+  for (let i = 0; i < diceElements.length; i++) {
+    diceElements[i].style.backgroundColor = 'white';
+  }
 }
