@@ -18,24 +18,32 @@
             <h1>Colors Game</h1>
                 <h2>Balance: 1000</h2>
        </div>
-       <div class= "game_display">
+    <div class= "game_display">
         <div class= "dice" id="display1"></div>
         <div class= "dice" id="display2"></div>
         <div class= "dice" id="display3"></div>
     </div>  
+    <div class= "playerChoices">
+        <h2>Player Choices: </h2>
+        <div class= "showChoice" id="show1"></div>
+        <div class= "showChoice" id="show2"></div>
+        <div class= "showChoice" id="show3"></div>
+    </div>   
        <div class= "game_body">
             <div class = "color-box">
-                <button id="yellow">Yellow</button>
-                <button id="orange">Orange</button>
-                <button id="pink">Pink</button>
-                <button id="blue">Blue</button>
-                <button id="green">Green</button>
-                <button id="red">Red</button>
+                <button class='colorButton' id="yellow">Yellow</button>
+                <button class='colorButton' id="orange">Orange</button>
+                <button class='colorButton' id="pink">Pink</button>
+                <button class='colorButton' id="blue">Blue</button>
+                <button class='colorButton' id="green">Green</button>
+                <button class='colorButton' id="red">Red</button>
             </div>
             <div class="input-section">
                 <label for="bet">Bet amount: </label>
-                <input type="number">
+                <input type="number" id="bet">
             </div>
+            <button id="resetBet">Reset Bet</button>
+            <button id="submitBet" onclick="getBet()">Submit Bet</button>
        </div>
        <div class="game_footer">
         <button id="reset" onclick="resetDice()">Reset Game</button>

@@ -44,3 +44,75 @@ function resetDice() {
     diceElements[i].style.backgroundColor = 'white';
   }
 }
+
+
+// starting the game
+let buttonClicks = [];
+let balance = 1000;
+
+const selectColors = () => {
+  function handleButtonClick(event) {
+    // Only add to the array if it has less than 3 items
+    if (buttonClicks.length < 3) {
+      buttonClicks.push(event.target.id);
+      console.log(buttonClicks);
+    } else {
+      alert('You have selected the maximum amount of colors!');
+    }
+    updateShow1();
+    updateShow2();
+    updateShow3();
+  }
+
+  function resetArray() {
+    buttonClicks = [];
+    alert('Color selections have been reset')
+    updateShow1();
+    updateShow2();
+    updateShow3();
+  }
+
+  function updateShow1() { //these update the player choice colors
+    let show1 = document.getElementById('show1');
+    show1.style.backgroundColor = buttonClicks[0] || 'white'; // If the first item doesn't exist, set the color to white
+  }
+
+  function updateShow2() {
+    let show1 = document.getElementById('show2');
+    show1.style.backgroundColor = buttonClicks[1] || 'white'; // If the first item doesn't exist, set the color to white
+  }
+
+  function updateShow3() {
+    let show1 = document.getElementById('show3');
+    show1.style.backgroundColor = buttonClicks[2] || 'white'; // If the first item doesn't exist, set the color to white
+  }
+
+  let buttons = document.getElementsByClassName('colorButton');
+  let resetBet = document.getElementById('resetBet');
+
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', handleButtonClick);
+  }
+
+  resetBet.addEventListener('click', resetArray);
+};
+
+selectColors();
+
+const betNumber = () => buttonClicks.length;
+
+const getBet = () => {
+  while (true) {
+    const bet = Number(document.getElementById('bet').value)
+    
+
+    if (isNaN(bet) || bet <= 0 || bet > (Number(balance) / Number(betNumber())) || betNumber() <= 0) {
+      alert('Please enter a valid number');
+      break;
+    } else {
+      return bet;
+    }
+  }
+}
+
+
