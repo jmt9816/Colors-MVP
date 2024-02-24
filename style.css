@@ -86,6 +86,18 @@ nav {
 
   .color-box button {
     margin-right: 10px;
+    text-decoration: none;
+    background-color: white;
+    border: none;
+    text-align: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition-duration: .04s;
+    width: 90px;
+  }
+
+  button:hover {
+    background-color:lightpink;
   }
 
   .game_footer {

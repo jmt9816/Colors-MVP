@@ -35,6 +35,8 @@ document.getElementById('display3').style.backgroundColor = diceResults[2];
 return diceResults;
 }
 
+
+// Reset the dice to blank for testing
 function resetDice() {
   const diceElements = document.getElementsByClassName('dice');
 
