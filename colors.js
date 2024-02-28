@@ -10,42 +10,6 @@
 
 // Prompt user for color choices
 
-
-// dice roll
-function rollDice(){
-
-const roll = () => {
-  const results = [];
-    for (let i = 0; i < 3; i++) {
-      const colors = ['yellow', 'orange', 'pink', 'blue', 'green', 'red'];
-      const result = (colors[Math.floor(Math.random() * colors.length)]);
-      results.push(result);
-  }
-  return results;
-}
-
-const diceResults = roll();
-console.log(diceResults);
-
-  // Set the background colors of the elements
-document.getElementById('display1').style.backgroundColor = diceResults[0];
-document.getElementById('display2').style.backgroundColor = diceResults[1];
-document.getElementById('display3').style.backgroundColor = diceResults[2];
-
-return diceResults;
-}
-
-
-// Reset the dice to blank for testing
-function resetDice() {
-  const diceElements = document.getElementsByClassName('dice');
-
-  for (let i = 0; i < diceElements.length; i++) {
-    diceElements[i].style.backgroundColor = 'white';
-  }
-}
-
-
 // starting the game
 let buttonClicks = [];
 let balance = 1000;
@@ -90,14 +54,55 @@ const selectColors = () => {
   let buttons = document.getElementsByClassName('colorButton');
   let resetBet = document.getElementById('resetBet');
 
+  let newResetBet = resetBet.cloneNode(true);
+  resetBet.parentNode.replaceChild(newResetBet, resetBet);
+  resetBet = newResetBet;
+
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', handleButtonClick);
   }
 
   resetBet.addEventListener('click', resetArray);
+  return buttonClicks;
 };
 
 selectColors();
+
+// dice roll
+function rollDice(){
+
+  const roll = () => {
+    const results = [];
+      for (let i = 0; i < 3; i++) {
+        const colors = ['yellow', 'orange', 'pink', 'blue', 'green', 'red'];
+        const result = (colors[Math.floor(Math.random() * colors.length)]);
+        results.push(result);
+    }
+    return results;
+  }
+  
+  const diceResults = roll();
+  console.log(diceResults);
+  
+    // Set the background colors of the elements
+  document.getElementById('display1').style.backgroundColor = diceResults[0];
+  document.getElementById('display2').style.backgroundColor = diceResults[1];
+  document.getElementById('display3').style.backgroundColor = diceResults[2];
+  
+  return diceResults;
+  }
+  
+  
+  // Reset the dice to blank for testing
+  function resetDice() {
+    const diceElements = document.getElementsByClassName('dice');
+  
+    for (let i = 0; i < diceElements.length; i++) {
+      diceElements[i].style.backgroundColor = 'white';
+    }
+    balance = 1000;
+    updateBalance(balance);
+  }
 
 const betNumber = () => buttonClicks.length;
 
@@ -115,4 +120,62 @@ const getBet = () => {
   }
 }
 
+
+// check for winning selections
+function checkMatch(rolledColors) {
+  const chosenColors = buttonClicks; // Directly use buttonClicks array
+  let matchCounts = [0, 0, 0]; // Initialize match counts for each position
+
+  for (let i = 0; i < chosenColors.length; i++) {
+    for (let j = 0; j < rolledColors.length; j++) {
+      if (chosenColors[i] === rolledColors[j]) {
+        matchCounts[i]++;
+      }
+    }
+  }
+
+  console.log (matchCounts);
+  return matchCounts;
+}
+
+const calculateWinnings = (bet, matchCounts) => {
+  let winnings = [0, 0, 0];
+  const multipliers = [0.95, 1.45, 1.95];
+
+  for (let i = 0; i < matchCounts.length; i++) {
+    if (matchCounts[i] > 0) {
+      winnings[i] = bet * multipliers[matchCounts[i] - 1];
+    }
+  }
+
+  return winnings;
+}
+
+function updateBalance(newBalance) {
+  document.getElementById('balance').textContent = newBalance;
+}
+
+
+const game = () => {
+  const bet = getBet();
+  if (!bet) {
+    return;
+  }
+  const diceResults = rollDice();
+  const matchCounts = checkMatch(diceResults); // Store return value of checkMatch
+  const winnings = calculateWinnings(bet, matchCounts);
+  balance += winnings.reduce((a, b) => a + b, 0) - (bet * betNumber());
+  updateBalance(balance);
+
+  // Create a message for the alert
+  let message = '';
+  for (let i = 0; i < matchCounts.length; i++) {
+    message += 'Position ' + (i + 1) + ': ' + matchCounts[i] + ' matches, winnings: ' + winnings[i] + '\n';
+  }
+
+  // Show the alert after a delay
+  setTimeout(function() {
+    alert(message);
+  }, 600); // Delay in milliseconds
+}
 

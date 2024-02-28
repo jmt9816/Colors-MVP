@@ -69,20 +69,17 @@ nav {
     justify-content: center;
     align-items: center;
     margin-bottom:-20px;
-    background-color: orange;
     height: 100px;
     position: relative;
   }
 
   .game_header h1 {
-    background-color: green;
     font-size: 70px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
   }
   .game_header h2 { 
-    background-color: blue;
     position: absolute;
     right: 0;
     margin-right: 20px;
@@ -94,12 +91,10 @@ nav {
     margin-bottom: 20px;
     justify-content: space-evenly;
     align-items: center;
-    background-color: blue;
   }
 
   .color-box {
     display: flex;
-    background-color: red;
     margin: 10px 20px;
   }
 
@@ -123,7 +118,6 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: purple;
     padding-bottom: 20px;
   }
 

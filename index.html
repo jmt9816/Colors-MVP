@@ -16,7 +16,7 @@
     <div class = "game">
        <div class = "game_header">
             <h1>Colors Game</h1>
-                <h2>Balance: 1000</h2>
+                <h2>Balance: <span id = "balance">1000</span></h2>
        </div>
     <div class= "game_display">
         <div class= "dice" id="display1"></div>
@@ -43,7 +43,7 @@
                 <input type="number" id="bet">
             </div>
             <button id="resetBet">Reset Bet</button>
-            <button id="submitBet" onclick="getBet()">Submit Bet</button>
+            <button id="submitBet" onclick="game()">Submit Bet</button>
        </div>
        <div class="game_footer">
         <button id="reset" onclick="resetDice()">Reset Game</button>
